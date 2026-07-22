@@ -22,6 +22,6 @@ A highly optimized, feature-rich CLI tool to convert standard audio files (MP3, 
 Clone the repository and install the Python dependencies:
 
 ```bash
-git clone [https://github.com/texysexr/audio2c8.git](https://github.com/texysexr/audio2c8.git)
+git clone https://github.com/texysexr/audio2c8.git
 cd audio2c8
 pip install -r requirements.txt
