@@ -195,6 +195,16 @@ def display_summary(output_name, txt_name, freq_mhz, target_samp_rate, duration,
         print(f"HackRF CMD: hackrf_transfer -t {output_name} -f {freq_hz} -s {target_samp_rate} -a 1 -x 47")
         print(f"PortaPack: Copy {output_name} and {txt_name} to /REPLAY")
 
+def prompt_frequency(default_mhz=107.9):
+    fr_input = input(f"Enter Center Frequency in MHz (default: {default_mhz}): ").strip()
+    if not fr_input:
+        return default_mhz
+    try:
+        return float(fr_input)
+    except ValueError:
+        print_msg(f"[yellow]Invalid frequency input. Using default {default_mhz} MHz.[/yellow]")
+        return default_mhz
+
 def main():
     if not check_ffmpeg():
         print_msg("[red]Error: FFmpeg is not installed or not in PATH. Please install FFmpeg to continue.[/red]")
@@ -240,16 +250,22 @@ def main():
     preset = input("Enter choice [1-4] (default: 1): ").strip() or "1"
     
     if preset == "1":
-        target_sample_rate, freq_mhz = 500000, 107.9
+        target_sample_rate = 500000
+        freq_mhz = prompt_frequency(107.9)
     elif preset == "2":
-        target_sample_rate, freq_mhz = 1000000, 107.9
+        target_sample_rate = 1000000
+        freq_mhz = prompt_frequency(107.9)
     elif preset == "3":
-        target_sample_rate, freq_mhz = 250000, 107.9
+        target_sample_rate = 250000
+        freq_mhz = prompt_frequency(107.9)
     else:
         sr_input = input("Enter Sample Rate in Hz (default: 500000): ").strip()
-        target_sample_rate = int(sr_input) if sr_input else 500000
-        fr_input = input("Enter Center Frequency in MHz (default: 107.9): ").strip()
-        freq_mhz = float(fr_input) if fr_input else 107.9
+        try:
+            target_sample_rate = int(sr_input) if sr_input else 500000
+        except ValueError:
+            print_msg("[yellow]Invalid sample rate input. Using default 500000 Hz.[/yellow]")
+            target_sample_rate = 500000
+        freq_mhz = prompt_frequency(107.9)
 
     output_name = input("Enter output filename (default: output.c8): ").strip() or "output.c8"
     if not output_name.endswith('.c8'):
