@@ -1,4 +1,4 @@
-# 🎙️ HackRF & PortaPack Audio-to-C8 Converter
+# 🎙️ HackRF & PortaPack Audio-to-FM Converter
 
 A fast, feature-rich command-line tool that converts standard audio files (MP3, WAV, FLAC, and M4A) into **HackRF/PortaPack `.c8` IQ files** for playback using **HackRF One** and **PortaPack (Mayhem Firmware)**.
 
@@ -77,7 +77,7 @@ pip install -r requirements.txt
 2. Run the converter:
 
 ```bash
-python audio2c8.py
+python audio2fm.py
 ```
 
 3. Select the audio file from the list.
