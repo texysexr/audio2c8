@@ -59,8 +59,8 @@ brew install ffmpeg
 Clone the repository:
 
 ```bash
-git clone https://github.com/texysexr/audio2c8.git
-cd audio2c8
+git clone https://github.com/texysexr/hackrf-fm-encoder.git
+cd hackrf-fm-encoder
 ```
 
 Install dependencies:
